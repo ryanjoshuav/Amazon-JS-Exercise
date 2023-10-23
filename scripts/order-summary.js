@@ -11,6 +11,7 @@ import {
   getDeliveryOption,
 } from "../data/delivery-options.js";
 import { getProduct } from "../data/products.js";
+import { renderPaymentSummary } from "./payment-summary.js";
 import { formatCurrency } from "./utils/money.js";
 
 export function renderOrderSummary() {
@@ -148,6 +149,8 @@ export function renderOrderSummary() {
 
       container.remove();
       updateCartQuantity();
+      renderOrderSummary();
+      renderPaymentSummary();
     });
   });
 
@@ -186,6 +189,8 @@ export function renderOrderSummary() {
       quantityLabel.innerHTML = newQuantity;
 
       updateCartQuantity();
+      renderOrderSummary();
+      renderPaymentSummary();
     });
   });
 
@@ -194,6 +199,7 @@ export function renderOrderSummary() {
       const { productId, deliveryOptionId } = element.dataset;
       updateDeliveryOption(productId, deliveryOptionId);
       renderOrderSummary();
+      renderPaymentSummary();
     });
   });
 }
